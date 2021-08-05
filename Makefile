@@ -1,4 +1,6 @@
-all:
+all: lib build decode_1 decode_2
+
+build:
 	gcc -L. -Wl,-rpath=. -lcyphernew -lcypher -m32 decode.o -o decode
 lib:
 	gcc -m32 -fno-pic -c cypher.c -o cypher.o
