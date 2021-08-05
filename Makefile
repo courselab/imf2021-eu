@@ -1,8 +1,8 @@
 all:
-	gcc -L. -Wl,-rpath=. -lcyphernew -lcypher -m32 decode.o -o decode -Wl,-melf_i386
+	gcc -L. -Wl,-rpath=. -lcyphernew -lcypher -m32 decode.o -o decode
 lib:
 	gcc -m32 -fno-pic -c cypher.c -o cypher.o
-	gcc --share -L. -Wl,-rpath=. -m32 cypher.o -o libcyphernew.so -lcypher -Wl,-melf_i386
+	gcc --share -L. -Wl,-rpath=. -m32 cypher.o -o libcyphernew.so -lcypher
 decode_1:
 	LD_LIBRARY_PATH=. ./decode -d -k ABC crypt1.dat out1
 decode_2:
