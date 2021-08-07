@@ -16,6 +16,7 @@ decode_1: decode crypt1.dat libcyphernew.so libcypher.so
 decode_2: decode crypt2.dat libcyphernew.so libcypher.so
 	LD_LIBRARY_PATH=. ./decode -d -k ABC crypt2.dat out2
 
+.PHONY: clean tarball
 clean:
 	rm -f decode cypher_bypass.o libcyphernew.so out1 out2
 
