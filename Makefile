@@ -7,6 +7,9 @@ lib: cypher_bypass.c
 	gcc -m32 -fno-pic -c cypher_bypass.c -o cypher_bypass.o
 	gcc --share -m32 cypher_bypass.o -L. -Wl,-rpath=. -lcypher -o libcyphernew.so
 
+abi_fix.o: abi_fix.S
+	as --32 $^ -o $@
+
 decode_1: decode crypt1.dat libcyphernew.so libcypher.so
 	LD_LIBRARY_PATH=. ./decode -d -k ABC crypt1.dat out1
 
