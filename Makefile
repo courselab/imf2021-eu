@@ -5,7 +5,7 @@ build: decode.o libcyphernew.so libcypher.so
 
 lib: cypher_bypass.c
 	gcc -m32 -fno-pic -c cypher_bypass.c -o cypher_bypass.o
-	gcc --share -m32 cypher_bypass.o -L. -Wl,-rpath=. -lcypher -o libcyphernew.so
+	gcc --share -m32 cypher_bypass.o abi_fix.o -L. -Wl,-rpath=. -lcypher -o libcyphernew.so
 
 abi_fix.o: abi_fix.S
 	as --32 $^ -o $@
