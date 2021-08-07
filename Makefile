@@ -1,5 +1,5 @@
 decode: decode.o libcrack.so libcypher.so
-	gcc -m32 decode.o -L. -Wl,-rpath=. -no-pie -lcrack -lcypher -o decode
+	gcc -m32 decode.o -L. -Wl,-rpath='$$ORIGIN' -no-pie -lcrack -lcypher -o decode
 
 libcrack.so: cypher_bypass.o abi_fix.o
 	gcc --share -m32 cypher_bypass.o abi_fix.o -L. -Wl,-rpath=. -o libcrack.so
@@ -18,7 +18,7 @@ decode_2: decode crypt2.dat
 
 .PHONY: clean tarball
 clean:
-	rm -f decode cypher_bypass.o abi_fix.o libcrack.so out1 out2
+	rm -f decode cypher_bypass.o abi_fix.o libcrack.so out1 out2 imf2021-eu.tar.gz
 
 tarball: Makefile decode.o cypher_bypass.c README libcypher.so crypt1.dat crypt2.dat
 	tar -czf imf2021-eu.tar.gz Makefile decode.o cypher_bypass.c abi_fix.S README libcypher.so crypt1.dat crypt2.dat
